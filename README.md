@@ -1,8 +1,12 @@
 # Project Instructions
 
 This project will be to take the logic you did in
-the previous project and split that logic into individual
+the previous sales tax project and split that logic into individual
 methods. 
+
+It utilizes some tests I wrote that will validate your code. Make sure you follow
+the instructions in the Main class closely to match method names exactly, or else these
+tests will not work.
 
 ## Step 1: Fork the project
 
@@ -94,4 +98,5 @@ to run tests. Give it a few minutes, and you'll see a checkmark next to the job.
 ## Step 7: Turn it in
 
 I will review the code and tests through the pull request, but to make sure I don't miss anything please
-submit your repo URL to the dropbox in MyHills.
+submit your repo URL to the dropbox in MyHills. You can get this URL by navigating to your repo
+and copying the URL in the browser.
