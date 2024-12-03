@@ -1,17 +1,17 @@
 package org.example;
-
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // Scanner for user input
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner=new Scanner(System.in);
 
         // Prompt user for the purchase price
         System.out.print("Enter the purchase price: ");
-        double price = scanner.nextDouble();
+        double price =scanner.nextDouble();
 
         // Tax rates
-        double stateTaxRate = 0.04; // 4%
-        double countyTaxRate = 0.02; // 2%
+        double stateTaxRate = 0.04;
+        double countyTaxRate = 0.02;
 
         // Calculations
         double stateTax = price * stateTaxRate;
