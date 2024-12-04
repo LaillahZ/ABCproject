@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'oracle' # See 'Supported distributions' for available options
-          java-version: '21'
+          java-version: '23'
 
       - name: Build
         run: mvn --batch-mode -DskipTests package
@@ -31,7 +31,7 @@ jobs:
         run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
 
       - name: Upload Artifact GitHub Action
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: testResults
           path: /home/runner/work/junit-example/junit-example/target/surefire-reports
