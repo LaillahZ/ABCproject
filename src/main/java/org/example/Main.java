@@ -1,27 +1,62 @@
 package org.example;
 
+import java.util.Scanner;
+import java.text.DecimalFormat;
+
 public class Main {
+
     public static void main(String[] args) {
-       /*Setup any variables you need and call your methods
-       * here in the main method */
+        // Setup variables
+        Scanner scanner = new Scanner(System.in);
+        final double STATE_TAX_RATE = 0.06;
+        final double COUNTY_TAX_RATE = 0.02;
+
+        // Call methods
+        double purchasePrice = inputPurchasePrice(scanner);
+        double stateTax = calculateTax(purchasePrice, STATE_TAX_RATE);
+        double countyTax = calculateTax(purchasePrice, COUNTY_TAX_RATE);
+        double totalTax = calculateTotal(stateTax, countyTax);
+        double totalPrice = calculateTotal(purchasePrice, totalTax);
+
+        // Display totals
+        displayTotals(purchasePrice, stateTax, countyTax, totalTax, totalPrice);
+
+        scanner.close();
     }
 
-    /* Write a method called inputPurchasePrice that
-    *  takes the user input for price, converts to
-    *  a double, and returns the price as a double
-    * */
+    /**
+     * Takes the user input for price, converts it to a double, and returns the value.
+     */
+    public static double inputPurchasePrice(Scanner scanner) {
+        System.out.print("Enter the purchase price: ");
+        return Double.parseDouble(scanner.nextLine());
+    }
 
-    /* Write a method called calculateTax that
-     * accepts a double called price and a double called
-     * tax rate as parameters and calculates and returns the tax
-     * */
+    /**
+     * Accepts a double price and a double tax rate, calculates the tax, and returns the value.
+     */
+    public static double calculateTax(double price, double taxRate) {
+        return price * taxRate;
+    }
 
-    /* Write a method called calculateTotal that
-     * accepts two double values and returns the sum
-     * */
+    /**
+     * Accepts two double values, calculates their sum, and returns it.
+     */
+    public static double calculateTotal(double value1, double value2) {
+        return value1 + value2;
+    }
 
-    /* Write a method called displayTotals that takes
-    *  purchasePrice, stateTax, countyTax, totalTax and totalPrice
-    *  as double parameters. Output using decimal formatter amd printf */
+    /**
+     * Accepts purchasePrice, stateTax, countyTax, totalTax, and totalPrice, and displays them formatted.
+     */
+    public static void displayTotals(double purchasePrice, double stateTax, double countyTax, double totalTax, double totalPrice) {
+        DecimalFormat df = new DecimalFormat("#,##0.00");
 
+        System.out.println("\n--- Totals ---");
+        System.out.printf("Purchase Price: $%s%n", df.format(purchasePrice));
+        System.out.printf("State Tax:      $%s%n", df.format(stateTax));
+        System.out.printf("County Tax:     $%s%n", df.format(countyTax));
+        System.out.printf("Total Tax:      $%s%n", df.format(totalTax));
+        System.out.printf("Total Price:    $%s%n", df.format(totalPrice));
+    }
 }
