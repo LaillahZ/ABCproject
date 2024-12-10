@@ -3,6 +3,7 @@ package org.example;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -10,14 +11,17 @@ public class SalesTaxTests {
 
     private static final double COUNTY_TAX_RATE = 0.02;
     private static final double STATE_TAX_RATE = 0.04;
+
     /*Tests user input*/
     @Test
     public void whenUserInputIsDouble_thenCorrectNumberIsReturnedAsDouble() {
-        //setup to have scanner read from this input stream
+        // Setup to have Scanner read from this input stream
         ByteArrayInputStream in = new ByteArrayInputStream("21.34".getBytes());
         System.setIn(in);
 
-        assertEquals(21.34, Main.inputPurchasePrice());
+        // Initialize a Scanner and call the method
+        Scanner scanner = new Scanner(System.in);
+        assertEquals(21.34, Main.inputPurchasePrice(scanner));
     }
 
     /*Tests state tax*/
