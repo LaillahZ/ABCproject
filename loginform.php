@@ -1,15 +1,4 @@
-<<<<<<< HEAD
-<form method="POST" action="logindisplay.php">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-
-    <button type="submit" name="login">Login</button>
-    <button type="submit" name="create">Create Login</button>
-</form>
-=======
 <!-- loginform.php -->
 
 <!DOCTYPE html>
@@ -34,4 +23,3 @@
 
 </body>
 </html>
->>>>>>> c9d1aee469bc84ffc9e67d1c8765f6cfb6d02db7

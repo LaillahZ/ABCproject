@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 // Initialize a global variable to track login status
 $isLogin = false;
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
-=======
+
 <!-- logindisplay.php -->
 
 <!DOCTYPE html>
