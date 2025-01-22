@@ -1,56 +1,52 @@
-
 <?php
 // Initialize a global variable to track login status
 $isLogin = false;
 
+// Read the file into arrays
+$usernames = [];
+$passwords = [];
+
+// Open the file for reading and populate the arrays
+$file = fopen("password.txt", "r");
+if ($file) {
+    while (!feof($file)) {
+        $fileUsername = trim(fgets($file));
+        $filePassword = trim(fgets($file));
+        if (!empty($fileUsername) && !empty($filePassword)) {
+            $usernames[] = $fileUsername;
+            $passwords[] = $filePassword;
+        }
+    }
+    fclose($file);
+} else {
+    echo "Error: Unable to open the password file.";
+}
+
 /**
- * Function to check if the username and password exist in the file
+ * Function to check if the username and password exist in the arrays
  * @param string $username The username to search
  * @param string $password The password to match
+ * @param array $usernames The array of usernames
+ * @param array $passwords The array of passwords
  */
-function searchPasswordFile($username, $password) {
+function searchArrays($username, $password, $usernames, $passwords) {
     global $isLogin;
-
-    // Open the file for reading
-    $file = fopen("password.txt", "r");
-
-    if ($file) {
-        // Read the file line by line
-        while (($line = fgets($file)) !== false) {
-            $fileUsername = trim($line); // Get username from the current line
-            $filePassword = trim(fgets($file)); // Get password from the next line
-
-            // Compare the username and password
-            if ($fileUsername === $username && $filePassword === $password) {
-                $isLogin = true;
-                break;
-            }
+    foreach ($usernames as $index => $storedUsername) {
+        if ($storedUsername === $username && $passwords[$index] === $password) {
+            $isLogin = true;
+            break;
         }
-        fclose($file); // Close the file
-    } else {
-        echo "Error: Unable to open the password file.";
     }
 }
 
 /**
- * Function to check if a username already exists in the file
+ * Function to check if a username already exists in the array
  * @param string $username The username to search for
+ * @param array $usernames The array of usernames
  * @return bool True if the username exists, false otherwise
  */
-function isUsernameTaken($username) {
-    $file = fopen("password.txt", "r");
-
-    if ($file) {
-        while (($line = fgets($file)) !== false) {
-            if (trim($line) === $username) {
-                fclose($file); // Close the file if the username is found
-                return true;
-            }
-            fgets($file); // Skip the password line
-        }
-        fclose($file); // Close the file after reading
-    }
-    return false;
+function isUsernameTaken($username, $usernames) {
+    return in_array($username, $usernames);
 }
 
 // Handle form submissions
@@ -61,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
         if (!empty($username) && !empty($password)) {
-            searchPasswordFile($username, $password);
+            searchArrays($username, $password, $usernames, $passwords);
             echo $isLogin ? "Login successful!" : "Invalid username or password.";
         } else {
             echo "Please fill out all fields.";
@@ -74,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $password = isset($_POST["password"]) ? $_POST["password"] : "";
 
         if (!empty($username) && !empty($password)) {
-            if (!isUsernameTaken($username)) {
+            if (!isUsernameTaken($username, $usernames)) {
                 file_put_contents("password.txt", $username . PHP_EOL . $password . PHP_EOL, FILE_APPEND);
                 echo "Login created successfully!";
             } else {
@@ -113,6 +109,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <a href="loginform.php">Go Back to Log in Form</a>
 
+<!-- Example usage of a two-dimensional array -->
+<h3>Product List:</h3>
+<?php
+$products = [
+    ["id" => 101, "name" => "Laptop", "price" => 800],
+    ["id" => 102, "name" => "Smartphone", "price" => 500],
+    ["id" => 103, "name" => "Tablet", "price" => 300],
+];
+
+foreach ($products as $product) {
+    echo "<p>Product ID: {$product['id']}, Name: {$product['name']}, Price: \${$product['price']}</p>";
+}
+?>
+
 </body>
 </html>
->>>>>>> c9d1aee469bc84ffc9e67d1c8765f6cfb6d02db7
