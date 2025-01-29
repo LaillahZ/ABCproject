@@ -1,6 +1,3 @@
-
-<!-- loginform.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +15,8 @@
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br><br>
 
-    <input type="submit" value="Submit">
+    <input type="submit" name="login" value="Submit">
+    <input type="submit" name="create" value="Create Account">
 </form>
 
 </body>

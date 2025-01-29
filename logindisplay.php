@@ -83,8 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 
-<!-- logindisplay.php -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
