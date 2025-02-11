@@ -10,7 +10,12 @@
 <h2>Login Form</h2>
 <form action="logindisplay.php" method="post">
     <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br><br>
+    <input
+            type="text"
+            id="username"
+            name="username"
+            value="<?php echo isset($_COOKIE['username']) ? htmlspecialchars($_COOKIE['username']) : ''; ?>"
+            required><br><br>
 
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br><br>
@@ -21,3 +26,4 @@
 
 </body>
 </html>
+
